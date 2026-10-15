@@ -1,0 +1,163 @@
+\section{Security and Correctness Considerations}
+\label{sec:security}
+
+The evaluation distinguishes functional correctness, implementation
+robustness, and cryptographic security. Successful signing, verification,
+message recovery, and rejection tests provide evidence for the exercised
+implementation paths. They do not constitute a security proof.
+
+The repaired Windows XMSS WOTS+C implementation was tested over its full
+1024-signature lifetime. The tests checked private-state and signature indices,
+message recovery, rejection after exhaustion, and 15 negative cases. A
+short-input verification defect was corrected before these tests passed.
+Buffer guards detected no overwrite into the guarded regions during the
+tested executions; this does not establish general memory safety.
+
+The Windows XMSSMT WOTS+C implementation generated and verified 1026
+consecutive signatures, including the first height-10 subtree rollover.
+Twenty-eight negative cases passed. Global exhaustion of the height-20
+profile was not exercised. These results establish the tested rollover
+behavior, rather than full-lifetime validation of that profile.
+
+Stateful signing requires protection against reuse of a one-time signing
+index. Sequential index progression in these tests does not establish
+durable protection against process crashes, rollback, concurrent access,
+or restoration of an old private-state copy. Claims about persistence and
+recovery must therefore refer to the separate state-management experiments
+and their stated failure model.
+
+The alternative-hash and WOTS+C configurations are experimental
+constructions. Retaining a 32-byte digest, preserving address encodings,
+or producing a smaller signature does not by itself establish the security
+level of the standard construction. Accordingly, the reported size and
+latency results are implementation measurements, and security equivalence
+with standardized XMSS or XMSSMT is not claimed. Evidence from these
+stateful configurations also does not establish properties of SLH-DSA.
+
+% BEGIN WOTSC_SECURITY_PROOF_INTEGRATION_V1A
+
+\subsection{Source-bound security model for the experimental WOTS+C profile}
+\label{subsec:wotsc_security_model}
+
+Beyond the implementation-level correctness evidence above, we developed a
+source-bound security reduction for the canonical experimental
+XMSS$^{\mathrm{MT}}$ profile using WOTS+C on both height-10 layers. The
+analysis is deliberately separated into a primary standard-assumption theorem
+and an optional numerical corollary under explicitly idealized primitive and
+state-management assumptions. In particular, the implementation measurements
+are not used as substitutes for adversarial query bounds.
+
+Let $q_{F,0}$ and $q_{F,1}$ denote the adversary's addressed cut-oracle query
+budgets in the two layer-local WOTS+C reductions. These quantities are
+security-game resource parameters; they are not the number of honest
+implementation calls to the chain function and are not the complete
+implementation-lifetime hash-call counts. For either layer $j\in\{0,1\}$,
+the local reduction gives
+\[
+  \operatorname{Adv}_{\mathrm{WOTSC},j}(q_{F,j})
+  \le
+  \frac{8(4q_{F,j}+961)^2}{2^{256}}.
+\]
+Here, the additive constant $961=960+1$ arises from the fixed verification
+overhead in the reconstructed marking-oracle reduction together with the
+residual-search lemma's final $+1$ allowance.
+
+For the composed two-layer construction, the primary forgery bound is
+\[
+\begin{aligned}
+\Pr[\mathrm{Forge}_{\mathrm{XMSSMT}}]
+\le{}&
+  \operatorname{Adv}^{\mathrm{prf}}_{\mathrm{PRF\mbox{-}keygen}}
+  + 2^{-256}
+  + \operatorname{Adv}_{H_{\mathrm{msg}}\text{-}\mathrm{bind}}
+  + \Pr[E_{\mathrm{state}}] \\
+ &+
+  \operatorname{Adv}_{\mathrm{WOTSC},0}(q_{F,0})
+  + \operatorname{Adv}_{\mathrm{WOTSC},1}(q_{F,1})
+  + \operatorname{Adv}_{H_1\text{-}\mathrm{bind}}
+  + \Pr[E_{\mathrm{grind}}].
+\end{aligned}
+\]
+The $2^{-256}$ term corresponds to equality of independently and uniformly
+generated \texttt{SK\_PRF} and \texttt{PUB\_SEED}. The shared
+\texttt{SK\_SEED} reduction is charged once globally rather than once per
+XMSS$^{\mathrm{MT}}$ layer. The source-bound resource analysis limits the
+PRF-keygen reduction to at most $67{,}174{,}400$ distinct challenge inputs,
+the global DOMAIN-1 ledger to at most $334{,}972{,}196$ queries, and the
+complete $H_{\mathrm{msg}}$ ledger used by the theorem to at most
+$1{,}048{,}577$ queries. The corresponding PRF and binding advantages remain
+symbolic in the primary theorem rather than being assigned numerical values
+solely from the 256-bit SHA-256 output length.
+
+\subsection{State and grinding assumptions}
+\label{subsec:wotsc_state_grinding}
+
+For uninterrupted sequential execution, the audited implementation advances
+the XMSS$^{\mathrm{MT}}$ signing index without legitimate index reuse.
+Deployment-level reuse remains a separate event, denoted
+$E_{\mathrm{state}}$, because process rollback, restoration of stale private
+state, cloned signer images, concurrent writers, or non-durable index
+retirement can invalidate the stateful-signature assumption. Accordingly,
+$\Pr[E_{\mathrm{state}}]$ remains symbolic in the primary theorem.
+
+WOTS+C searches a 32-bit counter space for a digest whose 64 hexadecimal
+digits have the required fixed sum of 480. The successful counter is
+deterministically bounded by
+$0\le c\le 2^{32}-1$. Under the separate model in which distinct canonical
+type-7 counter inputs produce independent uniform 256-bit outputs, the
+single-trial acceptance probability is approximately
+$0.0107922589805859367$, and exhaustion of the complete $2^{32}$ candidate
+space is bounded below the probability $2^{-67{,}235{,}846}$. This
+grinding-exhaustion statement is conditional on that explicit ideal-uniform
+model; it is not asserted as an unconditional concrete property of SHA-256.
+
+\subsection{Conditional numerical corollary}
+\label{subsec:wotsc_conditional_corollary}
+
+For numerical interpretation only, consider an additional idealized model in
+which the PRF-keygen challenge interface is an ideal random function,
+distinct canonical $H_{\mathrm{msg}}$ inputs yield independent uniform
+256-bit outputs, and distinct canonical DOMAIN-1 inputs likewise yield
+independent uniform 256-bit outputs. Further assume a single authorized
+signer with atomic durable index retirement, no rollback, no stale-state
+restoration, no signer-state cloning, and no concurrent signing from the same
+private-state snapshot.
+
+Under these assumptions, the binding terms can be bounded by the birthday
+expressions
+\[
+  \frac{\binom{1{,}048{,}577}{2}}{2^{256}}
+  \quad\text{and}\quad
+  \frac{\binom{334{,}972{,}196}{2}}{2^{256}},
+\]
+corresponding to approximately $217.00$ and $200.36$ bits, respectively.
+If, in addition,
+\[
+ q_{F,0},q_{F,1}
+ \le
+ 576{,}460{,}752{,}303{,}423{,}247,
+\]
+then each layer-local WOTS+C term is at most $2^{-131}$. Combining these
+terms with the key-equality and grinding-exhaustion terms gives the frozen
+conditional aggregate bound
+\[
+  \Pr[\mathrm{Forge}_{\mathrm{XMSSMT}}]
+  \le
+  7.3468396926392969\times 10^{-40}
+  < 2^{-128}.
+\]
+The corresponding aggregate exponent is approximately $130$ bits.
+Consequently, the idealized corollary supports at least a 128-bit security
+target under the stated primitive, adversary-resource, and durable-state
+assumptions.
+
+This numerical corollary must not be interpreted as an unconditional
+128-bit or 130-bit concrete security proof for the real SHA-256
+implementation. In particular, the analysis does not assign a zero concrete
+PRF advantage to the implemented SHA-256 construction, nor does it claim
+that the real $H_{\mathrm{msg}}$ and DOMAIN-1 binding advantages are exactly
+the idealized birthday values above. The primary manuscript claim therefore
+remains the parameterized standard-assumption theorem.
+
+% END WOTSC_SECURITY_PROOF_INTEGRATION_V1A
+

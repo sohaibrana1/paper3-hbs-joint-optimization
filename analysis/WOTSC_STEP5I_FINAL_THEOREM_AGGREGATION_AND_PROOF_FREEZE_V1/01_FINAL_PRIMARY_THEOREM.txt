@@ -1,0 +1,176 @@
+FINAL PRIMARY WOTS+C / XMSSMT SECURITY THEOREM
+STANDARD-ASSUMPTION FORM
+
+For the canonical experimental profile:
+
+    XMSSMT-EXP-WOTSC-SHA2_20/2_256
+
+with:
+
+    n = 256 bits,
+    H = 20,
+    d = 2,
+    per-layer tree height = 10,
+    WOTS+C w = 16,
+    ell = 64,
+    fixed digit sum = 480,
+
+consider an adversary A against existential unforgeability of
+the composed XMSSMT construction.
+
+Subject to the established source, address, composition and
+single-execution state bindings, the forgery probability is
+bounded by:
+
+Pr[Forge_XMSSMT(A)]
+
+<=
+
+    Adv_PRF_keygen^prf(B_seed)
+
+  + Pr[E_KEY]
+
+  + Adv_Hmsg_bind(B_msg)
+
+  + Pr[E_STATE]
+
+  + Adv_WOTSC_0(q_F0)
+
+  + Adv_WOTSC_1(q_F1)
+
+  + Adv_H1_bind(B_H ; q_H)
+
+  + Pr[E_GRIND_EXHAUST].
+
+
+The individual terms are instantiated structurally as follows.
+
+
+============================================================
+KEY-EQUALITY EVENT
+============================================================
+
+Under independent uniform generation of SK_PRF and PUB_SEED:
+
+    Pr[E_KEY] = 2^-256.
+
+
+============================================================
+WOTS+C LAYER-LOCAL TERMS
+============================================================
+
+For j in {0,1}:
+
+    Adv_WOTSC_j(q_Fj)
+
+        <=
+
+    8(4 q_Fj + 961)^2
+    -----------------
+           2^256
+
+where:
+
+    q_Fj
+
+is the adversary's addressed cut-oracle query budget in the
+corresponding layer-local reduction.
+
+It is NOT the honest implementation signing F-call count and is
+NOT the complete implementation lifetime F-call count.
+
+
+============================================================
+DOMAIN-1 RESOURCE BOUND
+============================================================
+
+The global DOMAIN-1 resource ledger is:
+
+    q_H <= 334,972,196.
+
+The corresponding term remains:
+
+    Adv_H1_bind(B_H ; 334972196)
+
+in the primary theorem.
+
+
+============================================================
+H_MSG RESOURCE BOUND
+============================================================
+
+The complete H_msg resource ledger used for the theorem is:
+
+    q_Hmsg <= 1,048,577.
+
+The corresponding term remains:
+
+    Adv_Hmsg_bind(B_msg)
+
+in the primary theorem.
+
+
+============================================================
+PRF_KEYGEN RESOURCE BOUND
+============================================================
+
+The shared SK_SEED hybrid requires at most:
+
+    67,174,400
+
+distinct PRF-keygen challenge inputs.
+
+The term remains:
+
+    Adv_PRF_keygen^prf(B_seed).
+
+
+============================================================
+STATE EVENT
+============================================================
+
+Canonical uninterrupted single-execution index nonreuse has
+been established.
+
+Deployment-level state reuse caused by rollback, stale backup
+restore, cloning, concurrent writers or non-durable retirement
+is represented by:
+
+    E_STATE.
+
+The primary theorem therefore retains:
+
+    Pr[E_STATE]
+
+unless an explicit deployment assumption removes the event.
+
+
+============================================================
+GRINDING EXHAUSTION
+============================================================
+
+The counter space contains exactly:
+
+    2^32
+
+candidate values.
+
+Its exhaustion probability remains a model-dependent term in the
+primary theorem.
+
+Under the separately stated independent-uniform type-7 grinding
+model:
+
+    Pr[E_GRIND_EXHAUST]
+        <
+    2^-67,235,846.
+
+
+============================================================
+PRIMARY RESULT
+============================================================
+
+The primary theorem is a STANDARD-ASSUMPTION SYMBOLIC theorem.
+
+It does NOT claim an unconditional concrete 128-bit or 130-bit
+security level for the real SHA-256 implementation.

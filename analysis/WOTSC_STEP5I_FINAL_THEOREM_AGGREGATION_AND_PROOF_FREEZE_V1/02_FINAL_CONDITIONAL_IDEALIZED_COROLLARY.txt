@@ -1,0 +1,158 @@
+FINAL CONDITIONAL IDEALIZED NUMERICAL COROLLARY
+
+This corollary is NOT the primary theorem.
+
+Assume all of the following.
+
+============================================================
+A1 — IDEAL PRF
+============================================================
+
+The PRF-keygen challenge interface is idealized as a random
+function, so the PRF distinguishing term is zero relative to
+that ideal model.
+
+
+============================================================
+A2 — IDEAL H_MSG
+============================================================
+
+Distinct canonical H_msg inputs produce independent uniform
+256-bit values.
+
+Use:
+
+    Pr[Bad_Hmsg]
+      <=
+    C(1,048,577, 2) / 2^256.
+
+The corresponding security exponent is approximately:
+
+    216.9999986 bits.
+
+
+============================================================
+A3 — IDEAL DOMAIN-1
+============================================================
+
+Distinct canonical DOMAIN-1 inputs produce independent uniform
+256-bit values.
+
+Use:
+
+    Pr[Bad_H1]
+      <=
+    C(334,972,196, 2) / 2^256.
+
+The corresponding security exponent is approximately:
+
+    200.3610678 bits.
+
+
+============================================================
+A4 — DURABLE STATE
+============================================================
+
+Assume:
+
+    one logical signer;
+    atomic durable index retirement;
+    signature release only after durable retirement;
+    no rollback;
+    no stale backup restoration;
+    no state cloning;
+    no concurrent signing from the same state snapshot.
+
+Under these operational assumptions:
+
+    Pr[E_STATE] = 0.
+
+
+============================================================
+A5 — GRINDING MODEL
+============================================================
+
+For distinct canonical type-7 counter inputs, grinding digests
+are modeled as independent uniform 256-bit values.
+
+Under this model:
+
+    Pr[E_GRIND_EXHAUST]
+      <
+    2^-67,235,846.
+
+
+============================================================
+A6 — ADVERSARY WOTS+C QUERY BUDGET
+============================================================
+
+Require independently for both XMSSMT layers:
+
+    q_F0 <= 576,460,752,303,423,247
+
+and:
+
+    q_F1 <= 576,460,752,303,423,247.
+
+Then each layer-local WOTS+C term is at most:
+
+    2^-131.
+
+
+============================================================
+AGGREGATE
+============================================================
+
+Using the conservative WOTS+C bounds:
+
+    WOTSC_0 <= 2^-131
+
+    WOTSC_1 <= 2^-131,
+
+plus the idealized primitive terms, key-equality term and
+grinding term, the frozen Step-5H aggregate satisfies:
+
+    total failure probability
+        <
+    2^-128.
+
+The computed aggregate exponent is approximately:
+
+    130.0 bits.
+
+
+============================================================
+AUTHORIZED INTERPRETATION
+============================================================
+
+Under assumptions A1--A6:
+
+    the aggregate bound exceeds the selected 128-bit security
+    threshold.
+
+Equivalently:
+
+    the conditional idealized corollary supports at least
+    128 bits of security.
+
+
+============================================================
+PROHIBITED INTERPRETATION
+============================================================
+
+Do NOT rewrite this result as:
+
+    "the real SHA-256 implementation is proven to have
+     unconditional 130-bit security."
+
+Do NOT state:
+
+    "SHA-256 provides exactly 200.36-bit DOMAIN-1 security."
+
+Do NOT state:
+
+    "SHA-256 provides exactly 217-bit H_msg security."
+
+Those numerical values arise from the explicit idealized
+independent-uniform models used only for this conditional
+corollary.

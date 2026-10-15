@@ -1,0 +1,37 @@
+O10 XMSS 2x2 PUBLICATION-SAFE RESULTS
+====================================
+
+The analysis used ten independent run-level replicates for each configuration and operation. Within-run operation samples were used only to derive the corresponding run-level summaries.
+
+KEYGEN
+------
+SHAKE256 relative to SHA256 under standard WOTS+ had a mean paired run-level effect of -10.588% (10/10 negative paired effects).
+SHAKE256 relative to SHA256 under WOTS+C had a mean paired run-level effect of -9.916% (10/10 negative paired effects).
+WOTS+C relative to standard WOTS+ under SHA256 had a mean paired run-level effect of -5.141% (10/10 negative paired effects).
+WOTS+C relative to standard WOTS+ under SHAKE256 had a mean paired run-level effect of -4.432% (10/10 negative paired effects).
+
+SIGN
+----
+SHAKE256 relative to SHA256 under standard WOTS+ had a mean paired run-level effect of -10.609% (10/10 negative paired effects).
+SHAKE256 relative to SHA256 under WOTS+C had a mean paired run-level effect of -10.181% (10/10 negative paired effects).
+WOTS+C relative to standard WOTS+ under SHA256 had a mean paired run-level effect of -4.873% (10/10 negative paired effects).
+WOTS+C relative to standard WOTS+ under SHAKE256 had a mean paired run-level effect of -4.416% (10/10 negative paired effects).
+
+VERIFY
+------
+SHAKE256 relative to SHA256 under standard WOTS+ had a mean paired run-level effect of -16.038% (9/10 negative paired effects).
+SHAKE256 relative to SHA256 under WOTS+C had a mean paired run-level effect of -10.328% (10/10 negative paired effects).
+WOTS+C relative to standard WOTS+ under SHA256 had a mean paired run-level effect of -8.516% (10/10 negative paired effects).
+WOTS+C relative to standard WOTS+ under SHAKE256 had a mean paired run-level effect of -1.658% (6/10 negative paired effects).
+
+The complete four-cell design also permitted a descriptive hash-by-WOTS interaction calculation. No significance test was prespecified for this interaction; it is therefore reported descriptively only.
+
+KEYGEN: mean interaction = 29.899 ms; median = 10.964 ms.
+SIGN: mean interaction = 23.565 ms; median = 11.453 ms.
+VERIFY: mean interaction = 0.093 ms; median = 0.096 ms.
+
+The structural signature-size result was fixed by the construction: the standard XMSS signature was 2500 bytes and the WOTS+C research-variant signature was 2408 bytes, a reduction of 92 bytes (3.68%).
+
+These timing results are descriptive. The frozen analysis did not execute p-values, confidence intervals, ANOVA, or other null-hypothesis significance tests. Accordingly, the results do not support causal or generalized performance claims.
+
+WOTS+C remains an experimental research variant; security equivalence, standardization, deployment, and interoperability are not claimed.

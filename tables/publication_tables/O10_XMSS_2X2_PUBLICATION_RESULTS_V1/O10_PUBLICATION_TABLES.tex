@@ -1,0 +1,64 @@
+\begin{table*}[t]
+\centering
+\caption{Run-level latency descriptives for the O10 XMSS $2\times2$ study. Each cell contains ten independent benchmark runs.}
+\label{tab:o10_cell_latency}
+\footnotesize
+\begin{tabular}{lllrrrrr}
+\toprule
+Operation & Configuration & Design & $n$ & Mean (ms) & Median (ms) & SD (ms) & Range (ms)\\
+\midrule
+KEYGEN & O10-X1 & SHA256 \,+\, WOTS\,+\, & 10 & 2470.428 & 2451.484 & 47.043 & 2439.442--2595.925 \\
+KEYGEN & O10-X2 & SHAKE256 \,+\, WOTS\,+\, & 10 & 2208.163 & 2207.596 & 1.985 & 2206.530--2212.882 \\
+KEYGEN & O10-X3 & SHA256 \,+\, WOTS\,+\,C & 10 & 2342.651 & 2337.069 & 13.121 & 2332.075--2371.565 \\
+KEYGEN & O10-X4 & SHAKE256 \,+\, WOTS\,+\,C & 10 & 2110.286 & 2110.471 & 1.300 & 2108.366--2111.802 \\
+SIGN & O10-X1 & SHA256 \,+\, WOTS\,+\, & 10 & 2472.481 & 2450.289 & 48.065 & 2440.466--2599.192 \\
+SIGN & O10-X2 & SHAKE256 \,+\, WOTS\,+\, & 10 & 2209.464 & 2209.582 & 1.869 & 2207.419--2213.849 \\
+SIGN & O10-X3 & SHA256 \,+\, WOTS\,+\,C & 10 & 2351.350 & 2344.832 & 14.911 & 2335.201--2376.827 \\
+SIGN & O10-X4 & SHAKE256 \,+\, WOTS\,+\,C & 10 & 2111.897 & 2111.816 & 1.602 & 2108.249--2113.755 \\
+VERIFY & O10-X1 & SHA256 \,+\, WOTS\,+\, & 10 & 1.370 & 1.343 & 0.086 & 1.249--1.517 \\
+VERIFY & O10-X2 & SHAKE256 \,+\, WOTS\,+\, & 10 & 1.148 & 1.142 & 0.108 & 1.011--1.330 \\
+VERIFY & O10-X3 & SHA256 \,+\, WOTS\,+\,C & 10 & 1.249 & 1.244 & 0.011 & 1.240--1.275 \\
+VERIFY & O10-X4 & SHAKE256 \,+\, WOTS\,+\,C & 10 & 1.120 & 1.120 & 0.001 & 1.119--1.121 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\caption{Predefined paired run-level contrasts in the O10 XMSS study. Percentage effects are computed within replicate as $100(\mathrm{experimental}-\mathrm{comparator})/\mathrm{comparator}$. Values are descriptive; no significance tests were prespecified.}
+\label{tab:o10_primary_contrasts}
+\footnotesize
+\begin{tabular}{llrrrr}
+\toprule
+Operation & Contrast & $n$ & Mean diff. (ms) & Mean effect (\%) & Negative runs\\
+\midrule
+KEYGEN & Hash effect with WOTS\,+\, & 10 & -262.264 & -10.588 & 10/10 \\
+KEYGEN & Hash effect with WOTS\,+\,C & 10 & -232.365 & -9.916 & 10/10 \\
+KEYGEN & WOTS\,+\,C effect with SHA256 & 10 & -127.776 & -5.141 & 10/10 \\
+KEYGEN & WOTS\,+\,C effect with SHAKE256 & 10 & -97.877 & -4.432 & 10/10 \\
+SIGN & Hash effect with WOTS\,+\, & 10 & -263.017 & -10.609 & 10/10 \\
+SIGN & Hash effect with WOTS\,+\,C & 10 & -239.452 & -10.181 & 10/10 \\
+SIGN & WOTS\,+\,C effect with SHA256 & 10 & -121.131 & -4.873 & 10/10 \\
+SIGN & WOTS\,+\,C effect with SHAKE256 & 10 & -97.566 & -4.416 & 10/10 \\
+VERIFY & Hash effect with WOTS\,+\, & 10 & -0.222 & -16.038 & 9/10 \\
+VERIFY & Hash effect with WOTS\,+\,C & 10 & -0.129 & -10.328 & 10/10 \\
+VERIFY & WOTS\,+\,C effect with SHA256 & 10 & -0.121 & -8.516 & 10/10 \\
+VERIFY & WOTS\,+\,C effect with SHAKE256 & 10 & -0.028 & -1.658 & 6/10 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table}[t]
+\centering
+\caption{Structural XMSS signature-size comparison. WOTS+C denotes the experimental research variant evaluated in this work.}
+\label{tab:o10_signature_size}
+\footnotesize
+\begin{tabular}{lrr}
+\toprule
+Construction & Signature (bytes) & Reduction (\%)\\
+\midrule
+Standard WOTS+ & 2500 & 0.00\\
+WOTS+C research variant & 2408 & 3.68\\
+\bottomrule
+\end{tabular}
+\end{table}

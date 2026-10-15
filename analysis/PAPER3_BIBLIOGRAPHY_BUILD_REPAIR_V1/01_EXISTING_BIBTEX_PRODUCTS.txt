@@ -1,0 +1,11 @@
+===== MANUSCRIPT DIRECTORY =====
+/home/sohaib/PhD_HBS/Objective1/Paper3_RPi5_Joint_Optimization/12_manuscript/PAPER3_FINAL_SYNTHESIS_V1/main.blg
+-rw------- 1 sohaib sohaib 2335 Oct 15 19:32 /home/sohaib/PhD_HBS/Objective1/Paper3_RPi5_Joint_Optimization/12_manuscript/PAPER3_FINAL_SYNTHESIS_V1/main.blg
+/home/sohaib/PhD_HBS/Objective1/Paper3_RPi5_Joint_Optimization/12_manuscript/PAPER3_FINAL_SYNTHESIS_V1/main.aux
+-rw------- 1 sohaib sohaib 21950 Oct 13 14:37 /home/sohaib/PhD_HBS/Objective1/Paper3_RPi5_Joint_Optimization/12_manuscript/PAPER3_FINAL_SYNTHESIS_V1/main.aux
+/home/sohaib/PhD_HBS/Objective1/Paper3_RPi5_Joint_Optimization/12_manuscript/PAPER3_FINAL_SYNTHESIS_V1/main.bbl
+-rw------- 1 sohaib sohaib 3114 Oct 15 19:32 /home/sohaib/PhD_HBS/Objective1/Paper3_RPi5_Joint_Optimization/12_manuscript/PAPER3_FINAL_SYNTHESIS_V1/main.bbl
+
+===== PREVIOUS BUILD DIRECTORY =====
+/home/sohaib/PhD_HBS/Objective1/Paper3_RPi5_Joint_Optimization/08_analysis/PAPER3_EVIDENCE_BOUND_MISSING_CONTENT_INTEGRATION_V1/build/main.aux
+-rw------- 1 sohaib sohaib 23249 Oct 15 19:32 /home/sohaib/PhD_HBS/Objective1/Paper3_RPi5_Joint_Optimization/08_analysis/PAPER3_EVIDENCE_BOUND_MISSING_CONTENT_INTEGRATION_V1/build/main.aux

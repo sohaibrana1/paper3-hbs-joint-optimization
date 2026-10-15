@@ -1,0 +1,91 @@
+FINAL MANUSCRIPT CLAIM REGISTER
+
+============================================================
+AUTHORIZED — PRIMARY CLAIM
+============================================================
+
+The WOTS+C extension admits a source-bound, parameterized
+security reduction within the canonical XMSSMT profile.
+
+The composed forgery bound is expressed in terms of standard
+PRF, H_msg-binding and DOMAIN-1-binding advantages, an explicit
+state-reuse event, and two layer-local WOTS+C cut-game terms.
+
+
+============================================================
+AUTHORIZED — LOCAL WOTS+C CLAIM
+============================================================
+
+For each layer-local reduction:
+
+    Adv_WOTSC(q_F)
+        <=
+    8(4q_F+961)^2 / 2^256,
+
+where q_F is the adversary addressed cut-oracle query budget.
+
+
+============================================================
+AUTHORIZED — GRINDING CLAIM
+============================================================
+
+The successful counter is deterministically bounded by:
+
+    0 <= c <= 2^32 - 1.
+
+Under the explicit independent-uniform type-7 grinding model:
+
+    p_accept
+      approximately
+    0.0107922589805859367,
+
+and exhaustion over the complete 2^32 counter space is
+negligible, below:
+
+    2^-67,235,846.
+
+
+============================================================
+AUTHORIZED — CONDITIONAL NUMERICAL CLAIM
+============================================================
+
+Under the explicitly stated idealized primitive assumptions,
+durable-state assumptions and per-layer adversary query budget,
+the aggregate theorem bound is below:
+
+    2^-128.
+
+The computed conditional aggregate exponent is approximately
+130 bits.
+
+
+============================================================
+NOT AUTHORIZED
+============================================================
+
+The following statements are NOT authorized:
+
+1. "The real SHA-256 WOTS+C/XMSSMT implementation has been
+   unconditionally proven 128-bit secure."
+
+2. "The real implementation has exactly 130-bit security."
+
+3. "SHA-256 PRF advantage equals zero."
+
+4. "The H_msg binding advantage is exactly 2^-217 for real
+   SHA-256."
+
+5. "The DOMAIN-1 binding advantage is exactly 2^-200.36 for
+   real SHA-256."
+
+6. "The implementation lifetime Q_F is the adversary q_F."
+
+7. "The expected grinding counter is the cryptographic
+   worst-case counter."
+
+8. "State reuse is impossible in arbitrary deployments."
+
+9. "The 3.68% signature reduction itself proves security."
+
+10. "The WOTS+C proof is independent of the stated primitive
+    and state assumptions."

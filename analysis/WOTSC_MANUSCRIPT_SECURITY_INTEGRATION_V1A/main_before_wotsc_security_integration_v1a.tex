@@ -1,0 +1,787 @@
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{longtable}
+
+\begin{document}
+
+\title{Joint Optimization of Hash-Based Signatures for Resource-Constrained Devices: Signature Compression, Compact State Management, and Performance Trade-offs}
+
+\author[1]{\fnm{Sohaib} \sur{Rana}}
+\email{sohaibrana2023@student.usm.my}
+
+\author*[1,2]{\fnm{Mohd Najwadi} \sur{Yusoff}}
+\email{najwadi@usm.my}
+
+\author*[3,4]{\fnm{Je Sen} \sur{Teh}}
+\email{j.teh@deakin.edu.au}
+
+\author[3]{\fnm{Adnan} \sur{Anwar}}
+\email{adnan.anwar@deakin.edu.au}
+
+\affil[1]{%
+\orgdiv{School of Computer Sciences},
+\orgname{Universiti Sains Malaysia},
+\orgaddress{\city{Gelugor}, \state{Penang}, \country{Malaysia}}}
+
+\affil[2]{%
+\orgdiv{Cybersecurity Research Centre (CYRES)},
+\orgname{Universiti Sains Malaysia},
+\orgaddress{\city{Gelugor}, \state{Penang}, \country{Malaysia}}}
+
+\affil[3]{%
+\orgdiv{School of Information Technology},
+\orgname{Deakin University},
+\orgaddress{\country{Australia}}}
+
+% TODO: verify whether a fourth affiliation is required for Je Sen Teh.
+% Do not guess the missing affiliation here.
+
+\abstract{
+Hash-based signatures provide post-quantum security with comparatively simple assumptions, but deployment on resource-constrained platforms remains sensitive to signature size, signing latency, state-management overhead, memory footprint, and implementation complexity. This study investigates a coordinated optimization framework for stateful hash-based signatures on resource-constrained systems. Individual and combined optimization strategies are evaluated using correctness-preserving implementation gates, controlled Raspberry Pi~5 measurements, and multi-objective analysis. The manuscript integrates experimental results across parameter optimization, compact state handling, alternative hash backends, memory-oriented optimization, parallel execution, signature-size reduction, cross-construction extensions, and combined optimization strategies. Final quantitative conclusions are inserted only from frozen validated datasets.
+}
+
+\keywords{
+Hash-based signatures,
+XMSS,
+XMSSMT,
+WOTS+,
+post-quantum cryptography,
+resource-constrained devices,
+Raspberry Pi 5,
+signature compression,
+state management,
+multi-objective optimization
+}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:introduction}
+
+% TODO:
+% - Motivation for post-quantum signatures on constrained systems.
+% - Signature-size and state-management problems.
+% - Gap: individual optimizations are often studied separately.
+% - Contribution: coordinated multi-objective evaluation.
+% - Explicitly distinguish standardized constructions from
+%   experimental non-standard extensions.
+
+\section{Background}
+\label{sec:background}
+
+\subsection{XMSS and XMSSMT}
+% TODO.
+
+\subsection{WOTS+}
+% TODO.
+
+\subsection{State management in stateful hash-based signatures}
+% TODO.
+
+\subsection{Performance constraints on resource-constrained devices}
+% TODO.
+
+\section{Research Problem and Optimization Framework}
+\label{sec:framework}
+
+% TODO:
+% Define the Objective-1 optimization dimensions:
+% signature size,
+% key generation latency,
+% signing latency,
+% verification latency,
+% serialized state,
+% memory,
+% implementation cost.
+
+\subsection{Optimization objectives}
+% TODO.
+
+\subsection{Experimental and standardized configurations}
+% TODO:
+% Clearly label every experimental/non-standard profile.
+
+\section{Methodology}
+
+% BEGIN PJ04_R2_METHODOLOGY
+\subsection{PJ04 WOTS+C corrected R2 evaluation}
+
+The PJ04 corrected R2 experiment compared the validated CONTROL and
+PJ04\_WOTSC configurations under the measured Raspberry Pi~5 conditions.
+Each mode comprised 10 execution blocks. Each block contained one key
+generation operation, 10 signing operations, and 10 verification operations.
+Accordingly, the 100 signing and 100 verification observations per mode were
+nested within 10 execution blocks and are not interpreted as 100 independent
+experimental replicates. CONTROL was executed before PJ04\_WOTSC; therefore,
+temporal-order effects cannot be excluded.
+
+\subsection{PJ04 block-aware uncertainty analysis}
+
+Descriptive summaries were retained for the raw timing observations, whereas
+uncertainty for signing and verification was evaluated at the execution-block
+level. The validated nonparametric procedure independently resampled the 10
+blocks within each mode, used 10,000 bootstrap resamples with seed 20261003,
+and reported percentile 95\% confidence intervals. This independent-mode
+resampling does not establish paired-block correspondence. The resulting
+intervals are used as block-aware uncertainty summaries rather than as
+confirmatory significance tests.
+% END PJ04_R2_METHODOLOGY
+
+\label{sec:methodology}
+
+\subsection{Experimental platform}
+% TODO:
+% Raspberry Pi 5 hardware/software/environment.
+
+\subsection{Measurement methodology}
+% TODO:
+% Timing clocks, affinity, thermal control, run-order control.
+
+\subsection{Correctness and validation gates}
+% TODO:
+% Positive/negative testing, rollover, sanitizers, provenance.
+
+\subsection{Statistical methodology}
+% The M3-specific methodology is inserted below.
+\input{m3_rpi5/M3_RPI5_METHODS_STATISTICAL_ANALYSIS.tex}
+
+\section{Individual Optimization Strategies}
+
+% BEGIN PJ04_R2_INDIVIDUAL_OPT
+\subsection{PJ04 WOTS+C corrected R2 artifact and latency results}
+
+PJ04\_WOTSC reduced the XMSS signature from 2500 to 2408~bytes, an exact
+reduction of 92~bytes. The corresponding C1 FULL packet decreased from 2506
+to 2414~bytes, also an exact 92-byte reduction. These byte differences are
+deterministic artifact-geometry results and are therefore reported without
+inferential significance testing.
+
+\input{pj04_r2_tables/PJ04_R2_TABLE_ARTIFACT_GEOMETRY.tex}
+
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=0.88\textwidth]{pj04_r2_assets/PJ04_R2_FIG_ARTIFACT_SIZE_REDUCTION.pdf}
+\caption{PJ04 R2 deterministic signature and FULL-packet size comparison.}
+\label{fig:pj04_r2_size}
+\end{figure*}
+
+Under the measured Raspberry Pi~5 conditions, the observed mean key-generation
+latency changed by $-4.935397\%$ for PJ04\_WOTSC relative to CONTROL. The
+block-aware bootstrap interval for the percentage change was
+$[-5.169274124\%, -4.739936765\%]$.
+
+The observed mean signing latency changed by $-4.833727\%$, with a block-aware
+bootstrap interval of $[-4.934408761\%, -4.721328801\%]$. The observed mean
+verification latency changed by $-3.800672\%$, with a corresponding interval
+of $[-4.944207485\%, -2.468006971\%]$. These measurements describe the
+observed implementation behavior under the evaluated conditions and are not
+interpreted as causal performance effects or universal superiority.
+
+\input{pj04_r2_tables/PJ04_R2_TABLE_LATENCY_SUMMARY.tex}
+
+\input{pj04_r2_tables/PJ04_R2_TABLE_EFFECTS_AND_CI.tex}
+
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=0.88\textwidth]{pj04_r2_assets/PJ04_R2_FIG_LATENCY_EFFECTS.pdf}
+\caption{PJ04 R2 observed KEYGEN, SIGN, and VERIFY latency effects with validated uncertainty summaries.}
+\label{fig:pj04_r2_latency_effects}
+\end{figure*}
+
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=0.88\textwidth]{pj04_r2_assets/PJ04_R2_FIG_SIGN_BLOCK_LATENCY.pdf}
+\caption{PJ04 R2 block-level signing latency observations.}
+\label{fig:pj04_r2_sign_blocks}
+\end{figure*}
+
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=0.88\textwidth]{pj04_r2_assets/PJ04_R2_FIG_VERIFY_BLOCK_LATENCY.pdf}
+\caption{PJ04 R2 block-level verification latency observations.}
+\label{fig:pj04_r2_verify_blocks}
+\end{figure*}
+% END PJ04_R2_INDIVIDUAL_OPT
+
+\label{sec:individual}
+
+
+% BEGIN CANONICAL PATHB POSTPATCH INTEGRATION V1
+\subsection{Canonical post-patch Path-B WOTS+C evaluation}
+\label{subsec:pathb-canonical-postpatch}
+
+A fresh matched reference-core campaign was conducted after
+canonical-verifier integration to establish the current
+performance authority for the experimental Path-B WOTS+C
+construction. The Standard XMSSMT control produced a
+$4963$-byte signature, whereas canonical Path-B produced a
+$4779$-byte signature, yielding an absolute reduction of
+$184$ bytes ($3.707435\%$).
+
+At the fresh-key-block level ($n=10$ paired blocks per
+condition), Path-B reduced key-generation latency by
+$4.841972\%$ relative to the Standard control
+(pointwise paired-block bootstrap 95\% CI:
+$-4.957407\%$ to $-4.741268\%$). Signing latency was reduced by
+$4.750131\%$ (95\% CI:
+$-4.858689\%$ to $-4.640895\%$).
+
+Verification moved in the opposite direction. Canonical Path-B
+increased verification latency by $5.190717\%$
+(95\% CI: $+0.608855\%$ to $+10.058769\%$), from a mean of
+$2.677961$ ms for the Standard control to $2.816966$ ms for
+Path-B.
+
+\begin{table}[htbp]
+\centering
+\caption{Canonical post-patch XMSSMT Path-B WOTS+C comparison
+on Raspberry Pi 5. Confidence intervals are pointwise
+operation-specific paired-block bootstrap intervals.}
+\label{tab:pathb-canonical-postpatch}
+\begin{tabular}{lrrrr}
+\hline
+Metric & Standard & Path-B & Effect & Interpretation \\
+\hline
+Signature size (B)
+& 4963 & 4779 & $-184$ ($-3.707435\%$) & Path-B smaller \\
+KEYGEN (ms)
+& 2468.040906 & 2348.539062 & $-4.841972\%$ & Path-B lower \\
+SIGN (ms)
+& 4927.317295 & 4693.263271 & $-4.750131\%$ & Path-B lower \\
+VERIFY (ms)
+& 2.677961 & 2.816966 & $+5.190717\%$ & Path-B higher \\
+\hline
+\end{tabular}
+\end{table}
+
+These results establish an operation-specific
+communication--latency trade-off rather than universal
+performance superiority. The historical pre-patch
+verification-speedup interpretation is superseded by this
+canonical post-patch campaign.
+
+Path-B remains an experimental, non-standard construction.
+Security equivalence to conventional WOTS+/XMSSMT has not been
+established, and standards-compliance claims are not authorized.
+Consequently, Path-B is retained outside the
+security-preserving Pareto pool.
+% END CANONICAL PATHB POSTPATCH INTEGRATION V1
+
+\subsection{Prior layer-adaptive XMSSMT evidence}
+\label{subsec:prior_layer_adaptive_review}
+
+The earlier layer-adaptive study supplies a twenty-configuration
+dataset combining five ordered layer-height allocations with four
+ordered WOTS parameter placements. This dataset is reused here as
+prior evidence for the optimization framework and is not presented
+as a new Paper~3 measurement campaign.
+
+The frozen dataset demonstrates that configuration selection depends
+on the selected objectives. Its strict Pareto summary contained three
+configurations when minimizing mean signing latency, the signing
+95th percentile, signature size, and serialized secret-key size.
+Adding mean key-generation latency increased the strict frontier
+to ten configurations; adding verification latency increased it
+to twelve. These are results for the recorded configurations,
+measurement windows, and objective definitions, rather than evidence
+for a universally optimal profile.
+
+The dataset combines original measurements with randomized repeated
+measurements for the H14--6 configurations. Differences in observation
+counts and measurement windows must therefore remain explicit.
+This earlier-study frontier must also be distinguished from any
+Paper~3 frontier involving checkpointing, streaming, hash backends,
+or combined strategies.
+
+\subsection{Layer-aware delta checkpointing}
+\label{subsec:delta_checkpoint_review}
+
+The XMSSMT source audit established that upper-layer WOTS signatures
+were already cached in the baseline implementation. Consequently, adding
+the same cache would duplicate existing functionality. The evaluated
+extension instead used layer-aware dirty-state characterization and an
+authenticated delta journal to reduce persistent checkpoint traffic.
+For XMSSMT-SHA2\_20/2\_256, complete checkpoints were retained initially
+and at lower-subtree rollover, while intermediate records encoded
+contiguous changed byte ranges. The reconstructed standard secret-key
+state and subsequent signatures remained byte-identical in the recorded
+validation tests.
+
+The state characterization covered three independent keys and 3078
+transitions. Ordinary transitions had a median of 201 changed bytes,
+whereas the three rollover transitions changed between 4482 and
+4490 bytes. These measurements describe differences in byte values,
+rather than an instrumented trace of memory stores.
+
+The persistence evaluation used ten process sessions with alternating
+variant order. Recorded mean ordinary commit latency was
+16.380~ms for full-state persistence and 11.947~ms for delta persistence.
+The archived analysis reported a mean latency reduction of 27.048\%
+and an application-level write reduction of 91.911\%.
+Recovery after 64 transitions was slower for the delta journal:
+the recorded means were 259.898~microseconds for delta recovery and
+49.115~microseconds for baseline recovery.
+
+All fifteen recorded process-crash fault tests passed, including
+subsequent signature-equivalence checks. These tests do not establish
+power-loss durability. Rollback rejection assumes an external monotonic
+floor, and application-level bytes must not be interpreted as physical
+flash writes. The checkpoint optimization changes neither the standard
+signature format nor the signature size.
+
+\subsection{Compact state and persistence costs}
+\label{subsec:compact_state_review}
+
+The compact-state evaluation comprised ten process sessions for
+XMSS-SHA2\_10\_256 and XMSSMT-SHA2\_20/2\_256. Mean snapshot sizes were
+1118.058 and 4414.108 bytes, respectively, compared with raw serialized
+states of 1377 and 6002 bytes. The archived session-level analysis
+reported mean size savings of 18.805\% for XMSS and 26.456\% for XMSSMT.
+
+Serialization overhead and durable persistence were evaluated
+separately. Recorded mean pack/unpack costs were
+5.819/4.138~microseconds for XMSS and
+15.588/7.231~microseconds for XMSSMT.
+Mean durable signing/export latency was 34.568~ms for XMSS,
+compared with 6.701~ms for signing alone, and
+37.430~ms for XMSSMT, compared with 9.183~ms for signing alone.
+The archived analysis reported mean session-level overheads of
+415.993\% and 307.812\%, respectively. Thus, reduced serialized-state
+size did not imply a corresponding reduction in durable signing latency.
+
+The provenance record reports successful correctness, boundary,
+lower-tree rollover, and POSIX crash-durability validation.
+However, the monotonic-floor backend was a file test double;
+rollback-resistant hardware was not implemented. Snapshot confidentiality
+was not provided, warm recovery was not a cold-reboot measurement,
+and distributed multi-writer operation was outside the supported scope.
+
+\subsection{Alternative hash backend}
+\input{LH05_LH08_RPI5_HASH_RESULTS.tex}
+
+\label{subsec:hash_backend}
+% Earlier O4 results require separate integration.
+
+\subsection{Streaming WOTS+ public-key reduction}
+\label{subsec:o5_streaming_review}
+
+The streaming implementation supplied WOTS+ chain elements directly to
+the L-tree reduction instead of materializing the full WOTS+ public key.
+Both variants used the same baseline OpenSSL SHA-256 backend. The
+evaluation distinguished memory observations from latency measurements.
+
+The memory pilot used a fixed pthread-stack write watermark rather than
+total process resident memory. For XMSS-SHA2\_10\_256, the signing
+watermark decreased from 10,928 to 9,488 bytes. For
+XMSSMT-SHA2\_20/2\_256, it decreased from 11,824 to 10,384 bytes.
+Both observations correspond to a reduction of 1,440 bytes. Verification
+showed a reduction of 1,392 bytes for both profiles. These observations
+describe the tested stack watermark and do not establish an equivalent
+reduction in total process memory.
+
+Latency was evaluated in ten process sessions, using session-level
+Student-$t$ confidence intervals without outlier removal. Mean signing
+latency changes were $+2.467\%$ for XMSS, with a 95\% interval of
+$[-1.302,6.236]\%$, and $+0.941\%$ for XMSSMT, with an interval of
+$[-0.426,2.309]\%$. All reported latency-change intervals included zero.
+The results therefore support the observed memory benefit but do not
+resolve a latency improvement or establish latency equivalence.
+
+\subsection{Multicore execution}
+\label{subsec:o6_multicore_review}
+
+The multicore campaign compared serial execution with two-thread and
+four-thread variants in ten process sessions. Each session included
+three key-generation observations, twenty sequential signing
+observations, and twenty verification observations per profile and
+variant. Variant order was randomized using deterministic session
+seeds. CPU affinity was CPU~0 for serial execution, CPUs~0--1 for two
+threads, and CPUs~0--3 for four threads.
+
+Four-thread signing achieved a mean session-level speedup of 1.953
+for XMSS, with a 95\% interval of $[1.922,1.985]$, and 1.949 for
+XMSSMT, with an interval of $[1.914,1.983]$. Four-thread verification
+speedups were 1.655 and 1.664, respectively. Signing efficiency was
+approximately 48.8\% for XMSS and 48.7\% for XMSSMT, indicating that
+the measured acceleration did not scale linearly with thread count.
+
+Signature-index allocation, private-key state mutation, and BDS state
+mutation remained serialized. These results consequently describe
+parallel work within the evaluated implementation and do not authorize
+concurrent whole-signature operations on a shared mutable private key.
+
+\subsection{Signature-size optimization}
+\label{subsec:signature_size}
+\subsubsection{Independent lossless signature encoding}
+The O7 feasibility evaluation used 300 standard XMSS signatures
+of 2500 bytes and 300 standard XMSSMT signatures of 4963 bytes.
+ZLIB9, BZ2\_9, and LZMA\_XZ9 were evaluated using whole-signature
+and component-wise encoding. Decoding required no previous
+signature, cross-signature dictionary, or external decoder state.
+All 3600 encoding observations reported byte-exact reconstruction.
+
+The prespecified feasibility criterion required a mean size
+reduction of at least 5\% and smaller encodings for at least 95\%
+of signatures. No evaluated codec and mode met this criterion.
+The best result for both schemes was whole-signature ZLIB9:
+2521 bytes for XMSS and 4984 bytes for XMSSMT, representing
+expansions of 0.84\% and 0.423\%, respectively. No tested encoding
+was smaller than its original signature. The independent codec
+path was therefore closed with a negative feasibility result.
+This finding applies to the evaluated codecs and corpus; it does
+not establish impossibility for every lossless encoding method.
+
+The separate Windows WOTS+C construction comparison is reported
+in the cross-platform results section.
+
+\subsection{Cross-construction compression extension}
+\label{subsec:cross_construction}
+The O8 evaluation compared SLH-DSA-SHAKE-128s with the existing,
+attributed SPHINCS+C-SHAKE-128s-simple construction. Their
+signature sizes were 7856 and 6304 bytes, respectively: a
+1552-byte difference, or 19.7556\%. Both used 32-byte public
+keys and 64-byte secret keys. SPHINCS+C was evaluated as a
+separate construction and was not classified as FIPS 205
+SLH-DSA or as a newly proposed compression method.
+
+The Raspberry Pi 5 campaign comprised ten paired sessions,
+with one key generation, ten signatures, and ten verifications
+per construction per session. Each construction ran in a fresh
+process. Execution order alternated between sessions, giving
+five sessions with each construction first. The protocol
+specified CPU 0 affinity and the performance governor.
+No observations were removed. Inference used paired session
+means and a two-sided Student-$t$ interval on natural-log
+latency ratios, with nine degrees of freedom.
+
+Mean key-generation latency was 145.185 ms for SLH-DSA and
+89.914 ms for SPHINCS+C. Mean signing latency was 1116.542
+and 1335.806 ms, respectively; verification latency was
+1.102 and 7.772 ms. The geometric SLH-DSA/SPHINCS+C ratios
+and 95\% confidence intervals were 1.614694
+[1.612707, 1.616683] for key generation, 0.837428
+[0.799918, 0.876698] for signing, and 0.141809
+[0.140383, 0.143250] for verification.
+
+Thus, the smaller SPHINCS+C signatures accompanied faster
+key generation and slower signing and verification in this
+campaign. These differences describe the complete constructions
+and parameterizations. They cannot be attributed solely to
+compression, and they do not establish security equivalence
+or a size reduction within standard SLH-DSA.
+
+\input{MTLH05_MTLH08_XMSSMT_HASH_RESULTS.tex}
+
+\input{SLH05_SLH08_DERIVED_HASH_RESULTS.tex}
+
+\section{Combined Optimization}
+\label{sec:combined}
+
+\subsection{Direct evaluation of combined optimization}
+\label{subsec:o9_combined_review}
+
+The combined campaign evaluated two profiles and five implementation
+arms in ten paired sessions. The primary comparison was C07\_BATCH4
+against REF\_FIX01. Signing and verification used arithmetic means of
+ten observations within each session; key generation used one
+observation per session. Speedup was defined as reference latency
+divided by candidate latency. The analysis used geometric means of
+paired session ratios and 95\% bootstrap intervals with 10,000
+replicates and seed 20260928.
+
+For XMSS, primary speedups were 3.860 for key generation
+(95\% interval $[3.816,3.903]$), 4.087 for signing
+($[3.916,4.279]$), and 2.948 for verification
+($[2.826,3.050]$). For XMSSMT, the corresponding estimates were
+3.843 ($[3.814,3.866]$), 3.949 ($[3.676,4.207]$), and
+2.676 ($[2.442,2.895]$).
+
+These estimates came from direct combined-implementation measurements.
+They were not obtained by multiplying speedups from separate module
+campaigns. Across the full analysis, five comparison classifications
+differed between mean-based primary and median-based sensitivity
+analyses. Those disagreements must be reported alongside the
+corresponding comparisons. The timing results alone do not establish
+signature-size, serialized-state, memory, energy, or physical-storage
+benefits.
+
+\section{Experimental M3 XMSSMT Profile}
+\label{sec:m3}
+
+% This section is generated from the frozen M3 analysis package.
+
+\input{m3_rpi5/M3_RPI5_RESULTS.tex}
+
+\input{m3_rpi5/TABLE_M3_RPI5_PUBLICATION_RESULTS.tex}
+
+\input{m3_rpi5/M3_RPI5_FIGURE_INSERTIONS.tex}
+
+\input{m3_rpi5/M3_RPI5_DISCUSSION.tex}
+
+\input{m3_rpi5/M3_RPI5_LIMITATIONS.tex}
+
+\input{m3_rpi5/M3_RPI5_REPRODUCIBILITY_STATEMENT.tex}
+
+
+\section{Joint Multi-Objective Analysis}
+\label{sec:joint}
+
+The evaluated strategies affect different deployment costs.
+Signature bytes, transmitted packet bytes, serialized private state,
+checkpoint traffic, working memory, and operation latency are distinct
+quantities. A reduction in one must not be reported as a reduction in
+another. Compact snapshots and delta checkpoints reduce state-related
+costs without shortening the standard signature. Streaming reduces
+working-buffer requirements, while parallel execution primarily targets
+latency. Alternative hash backends change the experimental construction
+and its measured execution cost.
+
+The signature-size findings also require separate interpretation.
+Independent lossless encoding increased the size of every tested
+standard signature. WOTS+C produced smaller experimental XMSS and
+XMSSMT signatures. SPHINCS+C provided a smaller signature in a
+cross-construction comparison, with higher signing and verification
+latencies on the Raspberry Pi 5. These results do not demonstrate
+security-preserving compression of an unchanged standardized signature.
+
+The earlier layer-adaptive study supplies a Pareto analysis for its
+twenty recorded configurations. That frontier remains specific to
+its configurations, measurement windows, and selected objectives.
+The module campaigns in this manuscript use different protocols,
+profiles, and observation counts. They therefore support a structured
+comparison of trade-offs, but are not pooled into a new numerical
+Pareto frontier. Implementation complexity is discussed qualitatively
+where no common quantitative measure was collected.
+
+Direct combined-implementation measurements provide evidence for
+the combinations actually executed. Their effects cannot be inferred
+by multiplying speedups from separate experiments. Deployment
+selection should first specify the required construction and state
+reliability model, then compare feasible implementations using the
+costs relevant to the application. The present evidence does not
+identify a universally best configuration.
+
+\section{Cross-Platform Analysis}
+\input{LH05_LH08_WINDOWS_HASH_RESULTS.tex}
+
+\input{O10_WINDOWS_FASTCORE_RESULTS.tex}
+
+
+% BEGIN PJ04_R2_CROSS_PLATFORM
+The corrected PJ04 R2 evidence reported in this manuscript was obtained on the
+Raspberry Pi~5 platform. These measurements therefore characterize the tested
+Raspberry Pi~5 implementation and configuration and should not be interpreted
+as demonstrating equivalent behavior on the Windows implementation or on
+other platforms.
+% END PJ04_R2_CROSS_PLATFORM
+
+\label{sec:crossplatform}
+
+% TODO:
+% Integrate Windows results only after validation/freeze.
+% Prefer normalized ratios where methodologies differ.
+
+\section{Security and Correctness Considerations}
+\label{sec:security}
+
+The evaluation distinguishes functional correctness, implementation
+robustness, and cryptographic security. Successful signing, verification,
+message recovery, and rejection tests provide evidence for the exercised
+implementation paths. They do not constitute a security proof.
+
+The repaired Windows XMSS WOTS+C implementation was tested over its full
+1024-signature lifetime. The tests checked private-state and signature indices,
+message recovery, rejection after exhaustion, and 15 negative cases. A
+short-input verification defect was corrected before these tests passed.
+Buffer guards detected no overwrite into the guarded regions during the
+tested executions; this does not establish general memory safety.
+
+The Windows XMSSMT WOTS+C implementation generated and verified 1026
+consecutive signatures, including the first height-10 subtree rollover.
+Twenty-eight negative cases passed. Global exhaustion of the height-20
+profile was not exercised. These results establish the tested rollover
+behavior, rather than full-lifetime validation of that profile.
+
+Stateful signing requires protection against reuse of a one-time signing
+index. Sequential index progression in these tests does not establish
+durable protection against process crashes, rollback, concurrent access,
+or restoration of an old private-state copy. Claims about persistence and
+recovery must therefore refer to the separate state-management experiments
+and their stated failure model.
+
+The alternative-hash and WOTS+C configurations are experimental
+constructions. Retaining a 32-byte digest, preserving address encodings,
+or producing a smaller signature does not by itself establish the security
+level of the standard construction. Accordingly, the reported size and
+latency results are implementation measurements, and security equivalence
+with standardized XMSS or XMSSMT is not claimed. Evidence from these
+stateful configurations also does not establish properties of SLH-DSA.
+
+\section{Discussion}
+
+% BEGIN CANONICAL PATHB DISCUSSION V1
+
+The canonical Path-B result refines the interpretation of the
+earlier WOTS+C measurements. Signature-size reduction and the
+key-generation and signing advantages remain measurable in the
+fresh matched campaign, but the canonical verification rule
+introduces a verification penalty of $5.190717\%$. Therefore,
+the final evidence supports a communication/performance
+trade-off rather than a claim of universal speedup. This
+distinction is methodologically important because the
+canonical-verifier change affects the current verification
+authority; pre-patch verification timings are not reused for
+the final Path-B claim.
+
+The Path-B evidence is also kept separate from the
+security-preserving implementation-optimization frontier.
+Although the construction is functionally validated under the
+frozen experimental protocol, security equivalence and
+standards compliance remain unestablished.
+
+% END CANONICAL PATHB DISCUSSION V1
+
+
+% BEGIN PJ04_R2_DISCUSSION
+The PJ04 WOTS+C result illustrates a measured size--performance trade-off in
+which the deterministic signature and FULL-packet footprints were each reduced
+by 92~bytes while the observed mean KEYGEN, SIGN, and VERIFY latencies were
+also lower for the evaluated PJ04\_WOTSC configuration under the measured
+Raspberry Pi~5 conditions. This observation is specific to the tested
+implementation, configuration, platform, and execution conditions; it does not
+establish a causal performance effect or universal performance superiority.
+% END PJ04_R2_DISCUSSION
+
+\label{sec:discussion}
+
+% TODO:
+% Joint interpretation across O1--O13.
+
+\section{Limitations}
+
+% BEGIN PJ04_R2_LIMITATIONS
+For PJ04 R2, CONTROL was measured before PJ04\_WOTSC, so temporal-order
+effects cannot be excluded. In addition, the 100 signing and 100 verification
+measurements per mode were nested within 10 execution blocks and must not be
+treated as 100 independent experimental replicates. The validated bootstrap
+independently resampled blocks within each mode and therefore does not imply
+paired-block correspondence. Performance findings are specific to the measured
+Raspberry Pi~5 implementation, configuration, and experimental conditions.
+
+Thermal observations are included only as descriptive supporting platform
+evidence and are not used to infer causal thermal effects.
+
+\input{pj04_r2_tables/PJ04_R2_TABLE_PLATFORM_THERMAL.tex}
+
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=0.88\textwidth]{pj04_r2_assets/PJ04_R2_FIG_THERMAL_SUMMARY.pdf}
+\caption{PJ04 R2 descriptive thermal summary for the measured Raspberry Pi~5 runs.}
+\label{fig:pj04_r2_thermal}
+\end{figure*}
+% END PJ04_R2_LIMITATIONS
+
+\label{sec:limitations}
+
+% TODO:
+% Platform-specificity,
+% experimental profiles,
+% statistical replication,
+% implementation-specific results,
+% security-proof boundaries.
+
+\section{Reproducibility}
+
+% BEGIN PJ04_R2_REPRODUCIBILITY
+The finalized PJ04 R2 results, figures, tables, provenance records, and
+postvalidation evidence were assembled into a hash-verified publication
+package and subsequently frozen in the validated publication-package evidence
+chain. Manuscript integration uses those frozen artifacts without benchmark
+re-execution, statistical re-execution, bootstrap re-execution, figure
+regeneration, or numerical result recomputation.
+% END PJ04_R2_REPRODUCIBILITY
+
+\label{sec:reproducibility}
+
+% TODO:
+% Final Objective-1 artifact manifests,
+% dataset hashes,
+% source identities,
+% analysis freezes.
+
+\section{Conclusion}
+
+% BEGIN CANONICAL PATHB CONCLUSION V1
+
+For the canonical post-patch Path-B WOTS+C configuration,
+XMSSMT signature size decreased from $4963$ B to $4779$ B
+($184$ B; $3.707435\%$). Under the frozen Raspberry Pi 5
+reference-core campaign, key-generation and signing latency
+were lower by $4.841972\%$ and $4.750131\%$, respectively,
+whereas verification latency was higher by $5.190717\%$.
+Accordingly, this configuration is reported as an experimental
+communication/performance trade-off and not as a universally
+superior, security-equivalent, or standards-compliant
+construction.
+
+% END CANONICAL PATHB CONCLUSION V1
+
+
+The study separates signature-size reduction from improvements in
+state storage, checkpoint traffic, working memory, and execution
+latency. The evaluated independent lossless codecs did not reduce
+standard XMSS or XMSSMT signatures. Experimental WOTS+C configurations
+reduced the evaluated XMSS signature from 2500 to 2408 bytes and the
+XMSSMT signature from 4963 to 4779 bytes. These deterministic size
+differences accompany implementation-specific timing results and
+functional validation, rather than a demonstrated security-equivalence
+result.
+
+Compact state, delta checkpointing, streaming, parallel execution,
+and directly measured combinations address complementary deployment
+costs. Their usefulness depends on the selected profile, platform,
+failure model, and application objective. The alternative-hash results
+remain experimental, and the SPHINCS+C evaluation remains a comparison
+between different constructions.
+
+For Objective 1, the evidence establishes measured trade-offs and
+tested implementation improvements. It does not establish that every
+size-reducing experimental construction preserves the security
+guarantees of its standardized counterpart. Functional correctness,
+state reliability under the exercised failure model, and cryptographic
+security must remain separately justified.
+
+\label{sec:conclusion}
+
+
+
+\backmatter
+
+\bmhead{Acknowledgements}
+% TODO.
+
+\section*{Declarations}
+
+\bmhead{Funding}
+% TODO.
+
+\bmhead{Competing interests}
+The authors declare no competing interests.
+
+\bmhead{Data availability}
+% TODO: final repository/archive statement after Objective-1 freeze.
+
+\bmhead{Code availability}
+% TODO.
+
+\bmhead{Author contributions}
+% TODO.
+
+\bibliography{references}
+
+\end{document}

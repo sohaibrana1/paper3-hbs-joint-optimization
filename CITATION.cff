@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the associated publication."
+title: "Joint Optimization of Hash-Based Signatures for Resource-Constrained Devices"
+type: software
+authors:
+  - family-names: Rana
+    given-names: Sohaib
+  - family-names: Yusoff
+    given-names: Mohd Najwadi
+  - family-names: Teh
+    given-names: Je Sen
+  - family-names: Anwar
+    given-names: Adnan
+repository-code: "https://github.com/sohaibrana1/paper3-hbs-joint-optimization"

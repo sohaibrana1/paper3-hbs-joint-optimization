@@ -1,0 +1,59 @@
+field,required,unit_or_type,description
+experiment_id,YES,string,Frozen experiment identifier
+module,YES,string,Experimental module
+repeat_id,YES,integer,Independent process repeat
+timestamp_utc,YES,ISO8601,Measurement timestamp
+git_commit,YES,string,Source revision
+source_manifest_sha256,YES,SHA256,Source snapshot hash
+binary_sha256,YES,SHA256,Measured executable hash
+build_id,YES,string,Unique build identifier
+scheme,YES,string,Cryptographic scheme
+parameter_set,YES,string,Parameter-set identifier
+standard_status,YES,string,STANDARD_OR_EXPERIMENTAL
+implementation_variant,YES,string,Implementation mode
+hash_backend,YES,string,Hash backend
+wots_w,CONDITIONAL,integer,WOTS+ Winternitz parameter
+tree_height,CONDITIONAL,integer,Merkle-tree height
+layers,CONDITIONAL,integer,XMSSMT layer count
+execution_mode,YES,string,SEQ_OR_PAR
+worker_count,YES,integer,Number of worker threads
+cpu_affinity,YES,string,CPU affinity mask/list
+cpu_frequency_mhz,YES,number,Configured CPU frequency
+cpu_governor,YES,string,CPU frequency governor
+boost_status,YES,string,Boost state
+compiler,YES,string,Compiler family
+compiler_version,YES,string,Compiler version
+compiler_flags,YES,string,Compiler flags
+message_id,YES,string,Message identifier
+message_bytes,YES,bytes,Message length
+key_id,YES,string,Key identifier
+signature_index,CONDITIONAL,integer,Stateful signature index
+operation,YES,string,KEYGEN_SIGN_VERIFY_OR_OTHER
+iteration,YES,integer,Operation iteration
+latency_ns,YES,ns,Measured wall-clock latency
+cpu_cycles,CONDITIONAL,cycles,Hardware CPU cycles
+logical_hash_calls,CONDITIONAL,count,Logical hash invocations
+cycles_per_logical_hash,DERIVED,cycles_per_hash,CPU cycles divided by logical hash calls
+signature_bytes,CONDITIONAL,bytes,Original signature length
+compressed_signature_bytes,CONDITIONAL,bytes,Compressed signature length
+compression_ratio_percent,DERIVED,percent,Signature-size reduction
+compression_ns,CONDITIONAL,ns,Compression latency
+decompression_ns,CONDITIONAL,ns,Decompression latency
+public_key_bytes,CONDITIONAL,bytes,Public-key size
+secret_key_serialized_bytes,CONDITIONAL,bytes,Serialized secret/state size
+state_serialize_ns,CONDITIONAL,ns,State serialization latency
+state_deserialize_ns,CONDITIONAL,ns,State deserialization latency
+peak_heap_bytes,CONDITIONAL,bytes,Peak tracked heap
+peak_stack_bytes,CONDITIONAL,bytes,Peak stack usage
+peak_rss_bytes,CONDITIONAL,bytes,Peak resident-set size
+text_bytes,CONDITIONAL,bytes,ELF text section
+rodata_bytes,CONDITIONAL,bytes,ELF read-only-data section
+data_bytes,CONDITIONAL,bytes,ELF initialized-data section
+bss_bytes,CONDITIONAL,bytes,ELF BSS section
+verification_result,YES,string,PASS_OR_FAIL
+roundtrip_result,CONDITIONAL,string,PASS_OR_FAIL
+temperature_start_c,YES,Celsius,Temperature at measurement start
+temperature_end_c,YES,Celsius,Temperature at measurement end
+temperature_max_c,YES,Celsius,Maximum observed temperature
+throttling_status,YES,string,OBSERVED_OR_NOT_OBSERVED
+notes,NO,string,Run notes

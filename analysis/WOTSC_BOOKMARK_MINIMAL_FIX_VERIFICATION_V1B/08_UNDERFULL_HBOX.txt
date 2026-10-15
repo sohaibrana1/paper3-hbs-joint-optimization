@@ -1,0 +1,11 @@
+Underfull \hbox (badness 1748) in paragraph at lines 114--122
+Underfull \hbox (badness 1527) in paragraph at lines 173--177
+Underfull \hbox (badness 3471) in paragraph at lines 173--177
+Underfull \hbox (badness 1107) in paragraph at lines 178--184
+Underfull \hbox (badness 1939) in paragraph at lines 330--336
+Underfull \hbox (badness 3240) in paragraph at lines 346--356
+Underfull \hbox (badness 10000) in paragraph at lines 5--14
+Underfull \hbox (badness 1810) in paragraph at lines 497--503
+Underfull \hbox (badness 1436) in paragraph at lines 497--503
+Underfull \hbox (badness 3068) in paragraph at lines 12--13
+Underfull \hbox (badness 2990) in paragraph at lines 771--776

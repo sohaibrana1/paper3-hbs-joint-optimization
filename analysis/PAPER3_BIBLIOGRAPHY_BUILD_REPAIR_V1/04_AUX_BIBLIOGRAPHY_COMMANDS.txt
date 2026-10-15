@@ -1,0 +1,14 @@
+2:\bibstyle{sn-mathphys-num}
+9:\citation{RFC8391,NIST800208}
+10:\citation{OptimalParametersXMSSMT,McGrew2016StateManagement,Wang2020XMSSEmbedded,Bos2021RapidXMSS}
+11:\citation{Buchmann2011XMSS,RFC8391}
+12:\citation{NIST800208}
+13:\citation{OptimalParametersXMSSMT}
+19:\citation{Huelsing2013WOTSPlus,RFC8391}
+20:\citation{McGrew2016StateManagement,NIST800208}
+21:\citation{Campos2020LMSvsXMSS,Wang2020XMSSEmbedded,Bos2021RapidXMSS,Thoma2024AgileHBS}
+25:\citation{RFC8391,NIST800208}
+26:\citation{NIST2024FIPS205}
+33:\citation{RFC8391,Huelsing2013WOTSPlus}
+99:\citation{Huelsing2013WOTSPlus}
+135:\bibdata{references}

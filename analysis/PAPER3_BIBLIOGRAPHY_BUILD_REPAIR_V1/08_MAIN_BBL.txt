@@ -1,0 +1,235 @@
+%% BioMed_Central_Bib_Style_v1.01
+
+\begin{thebibliography}{11}
+% BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
+\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
+\ifx \binits  \undefined \def \binits#1{#1}\fi
+\ifx \bauthor  \undefined \def \bauthor#1{#1}\fi
+\ifx \batitle  \undefined \def \batitle#1{#1}\fi
+\ifx \bjtitle  \undefined \def \bjtitle#1{#1}\fi
+\ifx \bvolume  \undefined \def \bvolume#1{\textbf{#1}}\fi
+\ifx \byear  \undefined \def \byear#1{#1}\fi
+\ifx \bissue  \undefined \def \bissue#1{#1}\fi
+\ifx \bfpage  \undefined \def \bfpage#1{#1}\fi
+\ifx \blpage  \undefined \def \blpage #1{#1}\fi
+\ifx \burl  \undefined \def \burl#1{\textsf{#1}}\fi
+\ifx \doiurl  \undefined \def \doiurl#1{\url{https://doi.org/#1}}\fi
+\ifx \betal  \undefined \def \betal{\textit{et al.}}\fi
+\ifx \binstitute  \undefined \def \binstitute#1{#1}\fi
+\ifx \binstitutionaled  \undefined \def \binstitutionaled#1{#1}\fi
+\ifx \bctitle  \undefined \def \bctitle#1{#1}\fi
+\ifx \beditor  \undefined \def \beditor#1{#1}\fi
+\ifx \bpublisher  \undefined \def \bpublisher#1{#1}\fi
+\ifx \bbtitle  \undefined \def \bbtitle#1{#1}\fi
+\ifx \bedition  \undefined \def \bedition#1{#1}\fi
+\ifx \bseriesno  \undefined \def \bseriesno#1{#1}\fi
+\ifx \blocation  \undefined \def \blocation#1{#1}\fi
+\ifx \bsertitle  \undefined \def \bsertitle#1{#1}\fi
+\ifx \bsnm \undefined \def \bsnm#1{#1}\fi
+\ifx \bsuffix \undefined \def \bsuffix#1{#1}\fi
+\ifx \bparticle \undefined \def \bparticle#1{#1}\fi
+\ifx \barticle \undefined \def \barticle#1{#1}\fi
+\bibcommenthead
+\ifx \bconfdate \undefined \def \bconfdate #1{#1}\fi
+\ifx \botherref \undefined \def \botherref #1{#1}\fi
+\ifx \url \undefined \def \url#1{\textsf{#1}}\fi
+\ifx \bchapter \undefined \def \bchapter#1{#1}\fi
+\ifx \bbook \undefined \def \bbook#1{#1}\fi
+\ifx \bcomment \undefined \def \bcomment#1{#1}\fi
+\ifx \oauthor \undefined \def \oauthor#1{#1}\fi
+\ifx \citeauthoryear \undefined \def \citeauthoryear#1{#1}\fi
+\ifx \endbibitem  \undefined \def \endbibitem {}\fi
+\ifx \bconflocation  \undefined \def \bconflocation#1{#1}\fi
+\ifx \arxivurl  \undefined \def \arxivurl#1{\textsf{#1}}\fi
+\csname PreBibitemsHook\endcsname
+
+%%% 1
+\bibitem[\protect\citeauthoryear{H{\"u}lsing et~al.}{2018}]{RFC8391}
+\begin{botherref}
+\oauthor{\bsnm{H{\"u}lsing}, \binits{A.}},
+\oauthor{\bsnm{Butin}, \binits{D.}},
+\oauthor{\bsnm{Gazdag}, \binits{S.-L.}},
+\oauthor{\bsnm{Rijneveld}, \binits{J.}},
+\oauthor{\bsnm{Mohaisen}, \binits{A.}}:
+{XMSS}: extended merkle signature scheme.
+RFC 8391,
+Internet Research Task Force
+(May 2018).
+\doiurl{10.17487/RFC8391}
+\end{botherref}
+\endbibitem
+
+%%% 2
+\bibitem[\protect\citeauthoryear{Cooper et~al.}{2020}]{NIST800208}
+\begin{botherref}
+\oauthor{\bsnm{Cooper}, \binits{D.A.}},
+\oauthor{\bsnm{Apon}, \binits{D.C.}},
+\oauthor{\bsnm{Dang}, \binits{Q.H.}},
+\oauthor{\bsnm{Davidson}, \binits{M.S.}},
+\oauthor{\bsnm{Dworkin}, \binits{M.J.}},
+\oauthor{\bsnm{Miller}, \binits{C.A.}}:
+Recommendation for stateful hash-based signature schemes.
+NIST Special Publication 800-208,
+National Institute of Standards and Technology
+(October 2020).
+\doiurl{10.6028/NIST.SP.800-208}
+\end{botherref}
+\endbibitem
+
+%%% 3
+\bibitem[\protect\citeauthoryear{H{\"u}lsing
+  et~al.}{2013}]{OptimalParametersXMSSMT}
+\begin{bchapter}
+\bauthor{\bsnm{H{\"u}lsing}, \binits{A.}},
+\bauthor{\bsnm{Rausch}, \binits{L.}},
+\bauthor{\bsnm{Buchmann}, \binits{J.}}:
+\bctitle{Optimal parameters for {XMSSMT}}.
+In: \bbtitle{Security Engineering and Intelligence Informatics}.
+\bsertitle{Lecture Notes in Computer Science},
+vol. \bseriesno{8128},
+pp. \bfpage{194}--\blpage{208}.
+\bpublisher{Springer}, \blocation{???}
+(\byear{2013}).
+\doiurl{10.1007/978-3-642-40588-4_14}
+\end{bchapter}
+\endbibitem
+
+%%% 4
+\bibitem[\protect\citeauthoryear{McGrew
+  et~al.}{2016}]{McGrew2016StateManagement}
+\begin{bchapter}
+\bauthor{\bsnm{McGrew}, \binits{D.}},
+\bauthor{\bsnm{Kampanakis}, \binits{P.}},
+\bauthor{\bsnm{Fluhrer}, \binits{S.}},
+\bauthor{\bsnm{Gazdag}, \binits{S.-L.}},
+\bauthor{\bsnm{Butin}, \binits{D.}},
+\bauthor{\bsnm{Buchmann}, \binits{J.}}:
+\bctitle{State management for hash-based signatures}.
+In: \bbtitle{Security Standardisation Research -- SSR 2016}.
+\bsertitle{Lecture Notes in Computer Science},
+pp. \bfpage{244}--\blpage{260}.
+\bpublisher{Springer}, \blocation{???}
+(\byear{2016}).
+\doiurl{10.1007/978-3-319-49100-4_11}
+\end{bchapter}
+\endbibitem
+
+%%% 5
+\bibitem[\protect\citeauthoryear{Wang et~al.}{2020}]{Wang2020XMSSEmbedded}
+\begin{bchapter}
+\bauthor{\bsnm{Wang}, \binits{W.}},
+\bauthor{\bsnm{Jungk}, \binits{B.}},
+\bauthor{\bsnm{W{\"a}lde}, \binits{J.}},
+\bauthor{\bsnm{Deng}, \binits{S.}},
+\bauthor{\bsnm{Gupta}, \binits{N.}},
+\bauthor{\bsnm{Szefer}, \binits{J.}},
+\bauthor{\bsnm{Niederhagen}, \binits{R.}}:
+\bctitle{{XMSS} and embedded systems: {XMSS} hardware accelerators for
+  {RISC-V}}.
+In: \bbtitle{Selected Areas in Cryptography -- SAC 2019}.
+\bsertitle{Lecture Notes in Computer Science},
+vol. \bseriesno{11959},
+pp. \bfpage{523}--\blpage{550}.
+\bpublisher{Springer}, \blocation{???}
+(\byear{2020}).
+\doiurl{10.1007/978-3-030-38471-5_21}
+\end{bchapter}
+\endbibitem
+
+%%% 6
+\bibitem[\protect\citeauthoryear{Bos et~al.}{2021}]{Bos2021RapidXMSS}
+\begin{barticle}
+\bauthor{\bsnm{Bos}, \binits{J.W.}},
+\bauthor{\bsnm{H{\"u}lsing}, \binits{A.}},
+\bauthor{\bsnm{Renes}, \binits{J.}},
+\bauthor{\bsnm{Vredendaal}, \binits{C.}}:
+\batitle{Rapidly verifiable {XMSS} signatures}.
+\bjtitle{IACR Transactions on Cryptographic Hardware and Embedded Systems}
+\bvolume{2021}(\bissue{1}),
+\bfpage{137}--\blpage{168}
+(\byear{2021})
+\doiurl{10.46586/tches.v2021.i1.137-168}
+\end{barticle}
+\endbibitem
+
+%%% 7
+\bibitem[\protect\citeauthoryear{Buchmann et~al.}{2011}]{Buchmann2011XMSS}
+\begin{bchapter}
+\bauthor{\bsnm{Buchmann}, \binits{J.}},
+\bauthor{\bsnm{Dahmen}, \binits{E.}},
+\bauthor{\bsnm{H{\"u}lsing}, \binits{A.}}:
+\bctitle{{XMSS}: A practical forward secure signature scheme based on minimal
+  security assumptions}.
+In: \bbtitle{Post-Quantum Cryptography}.
+\bsertitle{Lecture Notes in Computer Science},
+vol. \bseriesno{7071},
+pp. \bfpage{117}--\blpage{129}.
+\bpublisher{Springer}, \blocation{???}
+(\byear{2011}).
+\doiurl{10.1007/978-3-642-25405-5_8}
+\end{bchapter}
+\endbibitem
+
+%%% 8
+\bibitem[\protect\citeauthoryear{H{\"u}lsing}{2013}]{Huelsing2013WOTSPlus}
+\begin{bchapter}
+\bauthor{\bsnm{H{\"u}lsing}, \binits{A.}}:
+\bctitle{{W-OTS+}: Shorter signatures for hash-based signature schemes}.
+In: \bbtitle{Progress in Cryptology -- AFRICACRYPT 2013}.
+\bsertitle{Lecture Notes in Computer Science},
+vol. \bseriesno{7918},
+pp. \bfpage{173}--\blpage{188}.
+\bpublisher{Springer}, \blocation{???}
+(\byear{2013}).
+\doiurl{10.1007/978-3-642-38553-7_10}
+\end{bchapter}
+\endbibitem
+
+%%% 9
+\bibitem[\protect\citeauthoryear{Campos et~al.}{2020}]{Campos2020LMSvsXMSS}
+\begin{bchapter}
+\bauthor{\bsnm{Campos}, \binits{F.}},
+\bauthor{\bsnm{Kohlstadt}, \binits{T.}},
+\bauthor{\bsnm{Reith}, \binits{S.}},
+\bauthor{\bsnm{St{\"o}ttinger}, \binits{M.}}:
+\bctitle{{LMS} vs {XMSS}: Comparison of stateful hash-based signature schemes
+  on {ARM Cortex-M4}}.
+In: \bbtitle{Progress in Cryptology -- AFRICACRYPT 2020}.
+\bsertitle{Lecture Notes in Computer Science},
+vol. \bseriesno{12174},
+pp. \bfpage{258}--\blpage{277}.
+\bpublisher{Springer}, \blocation{???}
+(\byear{2020}).
+\doiurl{10.1007/978-3-030-51938-4_13}
+\end{bchapter}
+\endbibitem
+
+%%% 10
+\bibitem[\protect\citeauthoryear{Thoma et~al.}{2024}]{Thoma2024AgileHBS}
+\begin{barticle}
+\bauthor{\bsnm{Thoma}, \binits{J.P.}},
+\bauthor{\bsnm{Hartlief}, \binits{D.}},
+\bauthor{\bsnm{G{\"u}neysu}, \binits{T.}}:
+\batitle{Agile acceleration of stateful hash-based signatures in hardware}.
+\bjtitle{ACM Transactions on Embedded Computing Systems}
+\bvolume{23}(\bissue{2}),
+\bfpage{1}--\blpage{29}
+(\byear{2024})
+\doiurl{10.1145/3567426}
+\end{barticle}
+\endbibitem
+
+%%% 11
+\bibitem[\protect\citeauthoryear{{National Institute of Standards and
+  Technology}}{2024}]{NIST2024FIPS205}
+\begin{botherref}
+\oauthor{\bsnm{{National Institute of Standards and Technology}}}:
+Stateless hash-based digital signature standard.
+Federal Information Processing Standards Publication 205,
+National Institute of Standards and Technology
+(August 2024).
+\doiurl{10.6028/NIST.FIPS.205}
+\end{botherref}
+\endbibitem
+
+\end{thebibliography}

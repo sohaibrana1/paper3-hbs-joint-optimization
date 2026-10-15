@@ -1,0 +1,13 @@
+operation,contrast,comparator,experimental,n_paired_runs,mean_difference_ms,median_difference_ms,mean_effect_percent,median_effect_percent,negative_runs,positive_runs,interpretation
+KEYGEN,Hash effect with WOTS+,O10-X1,O10-X2,10,-262.264,-244.103,-10.588,-9.960,10,0,descriptive_only
+KEYGEN,Hash effect with WOTS+C,O10-X3,O10-X4,10,-232.365,-226.985,-9.916,-9.712,10,0,descriptive_only
+KEYGEN,WOTS+C effect with SHA256,O10-X1,O10-X3,10,-127.776,-109.367,-5.141,-4.470,10,0,descriptive_only
+KEYGEN,WOTS+C effect with SHAKE256,O10-X2,O10-X4,10,-97.877,-97.641,-4.432,-4.423,10,0,descriptive_only
+SIGN,Hash effect with WOTS+,O10-X1,O10-X2,10,-263.017,-241.715,-10.609,-9.865,10,0,descriptive_only
+SIGN,Hash effect with WOTS+C,O10-X3,O10-X4,10,-239.452,-234.142,-10.181,-9.985,10,0,descriptive_only
+SIGN,WOTS+C effect with SHA256,O10-X1,O10-X3,10,-121.131,-107.468,-4.873,-4.359,10,0,descriptive_only
+SIGN,WOTS+C effect with SHAKE256,O10-X2,O10-X4,10,-97.566,-96.715,-4.416,-4.378,10,0,descriptive_only
+VERIFY,Hash effect with WOTS+,O10-X1,O10-X2,10,-0.222,-0.218,-16.038,-16.350,9,1,descriptive_only
+VERIFY,Hash effect with WOTS+C,O10-X3,O10-X4,10,-0.129,-0.124,-10.328,-9.955,10,0,descriptive_only
+VERIFY,WOTS+C effect with SHA256,O10-X1,O10-X3,10,-0.121,-0.100,-8.516,-7.446,10,0,descriptive_only
+VERIFY,WOTS+C effect with SHAKE256,O10-X2,O10-X4,10,-0.028,-0.022,-1.658,-1.906,6,4,descriptive_only

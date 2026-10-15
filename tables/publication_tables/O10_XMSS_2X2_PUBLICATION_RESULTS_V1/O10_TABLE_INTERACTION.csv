@@ -1,0 +1,4 @@
+operation,n_runs,mean_interaction_ms,median_interaction_ms,sd_interaction_ms,negative_runs,positive_runs,interpretation
+KEYGEN,10,29.899,10.964,51.107,1,9,descriptive_only_no_significance_test
+SIGN,10,23.565,11.453,43.101,2,8,descriptive_only_no_significance_test
+VERIFY,10,0.093,0.096,0.116,2,8,descriptive_only_no_significance_test
